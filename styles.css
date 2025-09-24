@@ -1,0 +1,295 @@
+/* CSS Variables for easy customization */
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --accent-color: #f093fb;
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --background: #f7fafc;
+    --white: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-large: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --border-radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: var(--background);
+    min-height: 100vh;
+}
+
+/* Container and layout */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header styles */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.title i {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* FAQ Container */
+.faq-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* FAQ Item */
+.faq-item {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.faq-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* FAQ Question */
+.faq-question {
+    padding: 1.5rem 2rem;
+    background: var(--white);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-question::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    opacity: 0.05;
+    transition: width 0.3s ease;
+}
+
+.faq-question:hover::before {
+    width: 100%;
+}
+
+.faq-question:hover {
+    background: rgba(102, 126, 234, 0.02);
+}
+
+.question-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.arrow {
+    font-size: 1rem;
+    color: var(--primary-color);
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.faq-item.active .arrow {
+    transform: rotate(180deg);
+    color: var(--secondary-color);
+}
+
+/* FAQ Answer */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    background: rgba(102, 126, 234, 0.02);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding: 1.5rem 2rem;
+}
+
+.faq-answer p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.faq-item {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.faq-item:nth-child(1) { animation-delay: 0.1s; }
+.faq-item:nth-child(2) { animation-delay: 0.2s; }
+.faq-item:nth-child(3) { animation-delay: 0.3s; }
+.faq-item:nth-child(4) { animation-delay: 0.4s; }
+.faq-item:nth-child(5) { animation-delay: 0.5s; }
+.faq-item:nth-child(6) { animation-delay: 0.6s; }
+.faq-item:nth-child(7) { animation-delay: 0.7s; }
+.faq-item:nth-child(8) { animation-delay: 0.8s; }
+.faq-item:nth-child(9) { animation-delay: 0.9s; }
+.faq-item:nth-child(10) { animation-delay: 1.0s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem 0.5rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .faq-question {
+        padding: 1rem 1.5rem;
+    }
+    
+    .question-text {
+        font-size: 1rem;
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 1rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5rem;
+    }
+    
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .faq-question {
+        padding: 1rem;
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 1rem;
+    }
+}
+
+/* Accessibility improvements */
+.faq-question:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #e2e8f0;
+        --text-secondary: #cbd5e0;
+        --background: #1a202c;
+        --white: #2d3748;
+        --border-color: #4a5568;
+    }
+}
